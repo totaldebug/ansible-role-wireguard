@@ -1,0 +1,44 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  roles:
+    - role: ansible-role-wireguard
+
+  vars:
+    wg-test0:
+      method: "wg-quick"
+      enable: True
+      listen_port: 51820
+
+      private_key: "0FZwbRzUF1ZG2i4hqhr1+oJJAQ3NTJDZDhpX3c1Qz1g="
+
+      addresses:
+        - "192.0.2.0/31"
+        - "2001:db8::/127"
+      dns:
+        - "192.0.2.1"
+
+      peers:
+        - comment: "Some client"
+          public_key: "yEvY7Jm8hgWLE64ocDMpwvcE3MH27xac6u55I2R2tik="
+          allowed_ips:
+            - "192.0.2.1"
+            - "2001:db8::1"
+          endpoint: "203.0.113.5"
+          persistent_keepalive: 25
+
+    wg-test1:
+      method: "wireguard-conf"
+      enable: False
+      listen_port: 51821
+
+      private_key: "0FZwbRzUF1ZG2i4hqhr1+oJJAQ3NTJDZDhpX3c1Qz1g="
+
+      peers:
+        - comment: "Another client"
+          public_key: "WLE64ocDMpwvcyEvY7Jm8hgE3MH27xac6u55I2R2tik="
+          allowed_ips:
+            - "192.0.2.3"
+          endpoint: "203.0.113.9"
