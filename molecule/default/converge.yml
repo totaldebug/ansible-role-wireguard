@@ -9,7 +9,7 @@
   vars:
     wg-test0:
       method: "wg-quick"
-      enable: True
+      enable: true
       listen_port: 51820
 
       private_key: "0FZwbRzUF1ZG2i4hqhr1+oJJAQ3NTJDZDhpX3c1Qz1g="
@@ -31,7 +31,7 @@
 
     wg-test1:
       method: "wireguard-conf"
-      enable: False
+      enable: false
       listen_port: 51821
 
       private_key: "0FZwbRzUF1ZG2i4hqhr1+oJJAQ3NTJDZDhpX3c1Qz1g="
